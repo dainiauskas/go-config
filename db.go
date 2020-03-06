@@ -8,6 +8,13 @@ import (
 	"github.com/go-sql-driver/mysql"
 )
 
+var (
+	defaultMaxIdleConns = 10
+	defaultMaxOpenConns = 10
+	defaultMaxIdleTime  = time.Minute * 60
+	defaultMaxLifetime  = time.Minute * 480
+)
+
 // Database configuration for connecting to database
 type Database struct {
 	// Dialect: mysql or mssql
@@ -42,6 +49,14 @@ type Database struct {
 
 	// Database collation
 	Collation string
+
+	// Pool connection settings
+	MaxIdleConns *int
+	MaxOpenConns *int
+
+	// Poll Time Minutes
+	MaxIdleTime *time.Duration
+	MaxLifetime *time.Duration
 }
 
 // setDefaults set default values if empty required data
@@ -57,6 +72,24 @@ func (d *Database) setDefaults() *Database {
 	if d.Collation == "" {
 		d.Collation = "cp1257_lithuanian_ci"
 	}
+
+	if d.MaxIdleConns == nil {
+		d.MaxIdleConns = &defaultMaxIdleConns
+	}
+
+	if d.MaxOpenConns == nil {
+		d.MaxOpenConns = &defaultMaxOpenConns
+	}
+
+	if d.MaxIdleTime != nil {
+		defaultMaxIdleTime = *d.MaxIdleTime * time.Minute
+	}
+	d.MaxIdleTime = &defaultMaxIdleTime
+
+	if d.MaxLifetime != nil {
+		defaultMaxLifetime = *d.MaxLifetime * time.Minute
+	}
+	d.MaxLifetime = &defaultMaxLifetime
 
 	return d
 }
