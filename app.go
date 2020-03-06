@@ -1,5 +1,12 @@
 package config
 
+// Secure used for TLS
+type Secure struct {
+	Cache string
+	Cert  string
+	Key   string
+}
+
 // App is Aplication Configuration
 type App struct {
 	// Verbose use for debug (default - false).
@@ -10,11 +17,17 @@ type App struct {
 	// Posible values: true, false
 	Console bool
 
-	// Host used for API
+	// Host URL for API
 	Host string
 
-	// Port used for API
+	// Port used for API listen
 	Port int
+
+	// Echo server configuration
+	Recover bool
+	Gzip    bool
+
+	Secure *Secure
 
 	// Schedule use string value, example: "* * * * * *". This value required!
 	//
