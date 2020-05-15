@@ -120,11 +120,16 @@ func (d *Database) getLocation() *time.Location {
 
 // myToString generate and return MySql connection string
 func (d *Database) myToString() string {
+	host := d.Host
+	if d.Port > 0 {
+		host += fmt.Sprintf(":%d", d.Port)
+	}
+
 	config := &mysql.Config{
 		User:                 d.User,
 		Passwd:               d.Pass,
 		Net:                  d.Net,
-		Addr:                 d.Host,
+		Addr:                 host,
 		DBName:               d.Name,
 		Params:               d.Params,
 		ParseTime:            true,
