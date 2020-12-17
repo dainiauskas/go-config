@@ -9,7 +9,8 @@ type Secure struct {
 
 // App is Aplication Configuration
 type App struct {
-	ServiceName string
+	ServiceName    string
+	ServiceDisplay string
 
 	// Verbose use for debug (default - false).
 	// Posible values: true, false
