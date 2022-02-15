@@ -1,4 +1,4 @@
-module bitbucket.org/butenta/pkg-config
+module github.com/ButentaLT/pkg-config
 
 go 1.14
 
