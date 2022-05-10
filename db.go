@@ -150,6 +150,10 @@ func (d *Database) msToString() string {
 	query.Add("database", d.Name)
 	query.Add("charset", d.Collation)
 
+	for key, val := range d.Params {
+		query.Add(key, val)
+	}
+
 	u := &url.URL{
 		Scheme:   "sqlserver",
 		User:     url.UserPassword(d.User, d.Pass),
