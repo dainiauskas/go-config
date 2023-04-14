@@ -30,6 +30,9 @@ type App struct {
 	Recover bool
 	Gzip    bool
 
+	// Updater
+	AutoUpdate bool
+
 	Secure *Secure
 
 	// Schedule use string value, example: "* * * * * *". This value required!
