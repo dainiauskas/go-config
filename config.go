@@ -12,7 +12,6 @@ var (
 // Config initial configuration for all projects
 type Config struct {
 	App
-	Butent
 	Database
 }
 
