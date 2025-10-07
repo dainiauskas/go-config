@@ -81,4 +81,7 @@ type App struct {
 	// @daily   | Run once a day, midnight                   | 0 0 0 * * *
 	// @hourly  | Run once an hour, beginning of hour        | 0 0 * * * *
 	Schedule string
+	// ExposeErrorStack controls whether internal stack traces are included in
+	// HTTP JSON error responses. Default is false (do not expose).
+	ExposeErrorStack bool `mapstructure:"expose_error_stack"`
 }
