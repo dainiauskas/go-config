@@ -84,4 +84,8 @@ type App struct {
 	// ExposeErrorStack controls whether internal stack traces are included in
 	// HTTP JSON error responses. Default is false (do not expose).
 	ExposeErrorStack bool `mapstructure:"expose_error_stack"`
+	// ExposeODataLog controls whether detailed OData request/response payloads
+	// are logged. Default is false. Use in production with caution to avoid
+	// leaking sensitive data.
+	ExposeODataLog bool `mapstructure:"expose_odata_log"`
 }
